@@ -1,1 +1,4 @@
-script: ./apache2hostcreate.sh
+language: bash
+
+script:
+    - bash equality_test.sh
