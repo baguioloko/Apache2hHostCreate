@@ -52,7 +52,7 @@ function main(){
 		a2ensite $host
 		echo "host: '$host' criado com sucesso acesse: http://$host ou http://www.$host";
 	else
-		echo "já existe esse host zé ruela!!";
+		echo "já existe esse host!!";
 	fi
 }
 
