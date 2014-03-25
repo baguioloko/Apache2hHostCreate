@@ -25,7 +25,7 @@ function main(){
 	</Directory>
 	<Directory /var/www/$host/public_html>
 		Options Indexes FollowSymLinks MultiViews
-		AllowOverride None
+		AllowOverride All
 		Order allow,deny
 		allow from all
 	</Directory>
