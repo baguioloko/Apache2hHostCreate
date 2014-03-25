@@ -21,7 +21,7 @@ function main(){
 	DocumentRoot /var/www/$host/public_html
 	<Directory />
 		Options FollowSymLinks
-		AllowOverride None
+		AllowOverride All
 	</Directory>
 	<Directory /var/www/$host/public_html>
 		Options Indexes FollowSymLinks MultiViews
