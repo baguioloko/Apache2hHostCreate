@@ -66,7 +66,7 @@ if [ $(which curl) ]; then
 	if [ "$HOST_OUTPUT" == "$HOST_NAME is working!" ]; then
 		echo "http://$HOST_NAME is ready to use"
 	else
-		echo "Some problems occured with your new host:$HOST_NAME"
+		echo "Some problems occurred with your new host:$HOST_NAME"
 	fi
 fi
 
