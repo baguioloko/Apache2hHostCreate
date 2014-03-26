@@ -10,6 +10,7 @@ fi
 
 if  [ ! $(which apache2) ]; then
 	echo "Apache2 is not available"
+	exit 1
 fi
 
 if [ ! -d "$VHOST_PATH" ]; then
