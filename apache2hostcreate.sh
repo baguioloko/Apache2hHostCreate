@@ -16,13 +16,13 @@ if [ ! -d "$VHOST_PATH" ]; then
 	mkdir -p $VHOST_PATH/public_html
 	chown -R $USER:$USER $VHOST_PATH/public_html
 	chmod -R 755 $VHOST_PATH
-	echo "o host: $host está funcionando: " >> $VHOST_PATH/public_html/index.html
+	echo "$HOST_NAME is working!" >> $VHOST_PATH/public_html/index.html
 	echo "127.0.0.1	$HOST_NAME" >> /etc/hosts
 	echo "
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
 	ServerName $HOST_NAME
-        ServerAlias www.$host
+        ServerAlias $HOST_NAME
 	DocumentRoot $VHOST_PATH/public_html
 	<Directory />
 		Options FollowSymLinks
@@ -53,8 +53,18 @@ if [ ! -d "$VHOST_PATH" ]; then
 </VirtualHost>
 
 " > /etc/apache2/sites-available/$HOST_NAME
-	echo "$HOST_NAME is working";
+	a2ensite $HOST_NAME >> /dev/null
+	service apache2 restart >> /dev/null
+	#Testing the new host
+	HOST_OUTPUT=$(curl http://$HOST_NAME/ 2>> /dev/null)
+	if [ "$HOST_OUTPUT" == "$HOST_NAME is working!" ]; then
+		echo "http://$HOST_NAME is ready to use"
+	else
+		echo "Some problems occurred with your new host:$HOST_NAME"
+	fi
 fi
+
+
 
 
 
