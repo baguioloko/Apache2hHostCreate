@@ -56,30 +56,19 @@ if [ ! -d "$VHOST_PATH" ]; then
 " > /etc/apache2/sites-available/$HOST_NAME
 	a2ensite $HOST_NAME >> /dev/null
 	service apache2 restart >> /dev/null
-	#Testing the new host
-	HOST_OUTPUT=$(curl http://$HOST_NAME/ 2>> /dev/null)
-	if [ "$HOST_OUTPUT" == "$HOST_NAME is working!" ]; then
-		echo "http://$HOST_NAME is ready to use"
-	else
-		echo "Some problems occurred with your new host:$HOST_NAME"
-	fi
 else
 	echo "There is already a host called $HOST_NAME"
 fi
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+#Testing the new host
+if [ $(which curl) ]; then
+	HOST_OUTPUT=$(curl http://$HOST_NAME/ 2>> /dev/null)
+	if [ "$HOST_OUTPUT" == "$HOST_NAME is working!" ]; then
+		echo "http://$HOST_NAME is ready to use"
+	else
+		echo "Some problems occured with your new host:$HOST_NAME"
+	fi
+fi
 
 
 
