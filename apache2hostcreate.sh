@@ -1,29 +1,34 @@
 #!/bin/bash
 
-#inicio da criação do host
-function main(){
-	echo "Entre com o nome do host!";
-	read host
-	if [ ! -d "/var/www/$host" ]; then
-		mkdir -p /var/www/$host/public_html
-        	echo "host criado !";
-		chown -R $USER:$USER /var/www/$host/public_html
-		chmod -R 755 /var/www/$host
-		echo "o host: $host está funcionando: " >> /var/www/$host/public_html/index.html
-		#cp /etc/apache2/sites-available/default /etc/apache2/sites-available/$host
-		echo "127.0.1.1	$host" >> /etc/hosts
-		echo "127.0.1.1 www.$host" >> /etc/hosts
-		echo "
+if [ "$#" -lt 1 ]; then
+	echo "Usage: $0 <hostname>"
+	exit 1
+else
+	HOST_NAME=$1 
+	VHOST_PATH="/var/www/"$HOST_NAME
+fi
+
+if  [ ! $(which apache2) ]; then
+	echo "Apache2 is not available"
+fi
+
+if [ ! -d "$VHOST_PATH" ]; then
+	mkdir -p $VHOST_PATH/public_html
+	chown -R $USER:$USER $VHOST_PATH/public_html
+	chmod -R 755 $VHOST_PATH
+	echo "o host: $host está funcionando: " >> $VHOST_PATH/public_html/index.html
+	echo "127.0.0.1	$HOST_NAME" >> /etc/hosts
+	echo "
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
-	ServerName $host
+	ServerName $HOST_NAME
         ServerAlias www.$host
-	DocumentRoot /var/www/$host/public_html
+	DocumentRoot $VHOST_PATH/public_html
 	<Directory />
 		Options FollowSymLinks
 		AllowOverride All
 	</Directory>
-	<Directory /var/www/$host/public_html>
+	<Directory $VHOST_PATH/public_html>
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride All
 		Order allow,deny
@@ -47,24 +52,30 @@ function main(){
 	CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 
-
-" > /etc/apache2/sites-available/$host
-		a2ensite $host
-		echo "host: '$host' criado com sucesso acesse: http://$host ou http://www.$host";
-	else
-		echo "já existe esse host!!";
-	fi
-}
-
-
-#verifica se o apache esta instalado
-apache=$(dpkg -l | grep -e apache2 > /dev/null && echo "1" || echo "0")
-
-if [ "$apache" == "1" ]; then
-	echo "Apache instalado";
-	#se o apache estiver instalado começa a criação do host
-	main;
-else
-	echo "Apache não instalado";
-	echo "por favor instale para continuar";
+" > /etc/apache2/sites-available/$HOST_NAME
+	echo "$HOST_NAME is working";
 fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
