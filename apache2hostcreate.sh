@@ -62,6 +62,8 @@ if [ ! -d "$VHOST_PATH" ]; then
 	else
 		echo "Some problems occurred with your new host:$HOST_NAME"
 	fi
+else
+	echo "There is already a host called $HOST_NAME"
 fi
 
 
