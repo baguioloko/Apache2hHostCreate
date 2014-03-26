@@ -2,6 +2,7 @@ create-new-virtual-host
 =======================
 
 Automate the process of creating new host in apache2.
+
 Usage: create-new-virtual-host.sh <host_name>
 
 Forked from:
