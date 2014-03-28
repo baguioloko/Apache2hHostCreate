@@ -69,15 +69,3 @@ if [ $(which curl) ]; then
 		echo "Some problems occurred with your new host:$HOST_NAME"
 	fi
 fi
-
-
-
-
-
-
-
-
-
-
-
-

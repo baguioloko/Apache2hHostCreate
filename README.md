@@ -9,6 +9,6 @@ Forked from:
 Apache2hHostCreate
 ==================
 Create new host for Apache2
-Tested on Debian 07
+Tested on Debian 07 and Ubuntu 12.04
 **Author**
 [@CBJonatanSantos](https://twitter.com/CBJonatanSantos)
