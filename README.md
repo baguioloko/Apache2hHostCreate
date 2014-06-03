@@ -7,8 +7,4 @@ Tested on Debian 07
 
 **Author**
 
-[@CBJonatanSantos](https://twitter.com/CBJonatanSantos)
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/baguioloko/apache2hhostcreate/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+[@joridos](https://twitter.com/joridos)
