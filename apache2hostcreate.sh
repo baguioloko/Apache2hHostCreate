@@ -56,7 +56,6 @@ function main(){
 	fi
 }
 
-
 #verifica se o apache esta instalado
 apache=$(dpkg -l | grep -e apache2 > /dev/null && echo "1" || echo "0")
 
